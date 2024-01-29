@@ -1,3 +1,5 @@
+import 'package:firebase_test/feature/2.home/data/models/data_request.dart';
+import 'package:firebase_test/feature/2.home/data/models/member_model.dart';
 import 'package:firebase_test/feature/2.home/presentation/provider/home_provider.dart';
 
 import '../../../../core/constants/index.dart';
@@ -8,10 +10,10 @@ const String bodyStr = '''{
     "name": "",
     "fields": {
         "member_name": {
-            "stringValue": "zidane15"
+            "stringValue": "zidane16"
         },
         "member_number": {
-            "stringValue": "15"
+            "stringValue": "16"
         },
         "member_id": {
             "stringValue": "2"
@@ -34,9 +36,30 @@ class HomeScreen extends ConsumerStatefulWidget {
 class _HomeScreenState extends ConsumerState<HomeScreen> {
 
   void _incrementCounter(WidgetRef ref) async {
+    // Map<String, dynamic> fields = {};
+    // fields['member_name'] = {"stringValue": "zidane12"};
+    // fields['member_number'] = {"stringValue": "12"};
+    // fields['member_id'] = {"stringValue": "1"};
+    // fields['phone'] = {"stringValue": "010-1234-4321"};
+
+    MemberModel data = MemberModel(
+      memberName: {"stringValue": "zidane16"},
+      memberNumber: {"stringValue": "16"},
+      memberId: {"stringValue": "6"},
+      phone: {"stringValue": "010-1234-4321"},
+    );
+
+    DataRequest model = DataRequest(
+      // name: "",
+      fields: data,
+      // createTime: '2024-01-25T07:15:58.443669Z',
+      // updateTime: '2024-01-25T07:15:58.443669Z',
+    );
     // await ref.read(homeRepositoryProvider).getTeam('best');
-    await ref.read(homeRepositoryProvider).getMember('best');
-    await ref.read(homeRepositoryProvider).patchMemberId("best", "zidane15", bodyStr);
+    // await ref.read(homeRepositoryProvider).getMember('best');
+    await ref.read(homeRepositoryProvider).patchMemberId("borussia", "zidane16", model);
+    print('>>>> ${jsonEncode(model)}');
+    // await ref.read(homeRepositoryProvider).patchMemberIdString("best", "zidane17", jsonEncode(model));
   }
 
   @override

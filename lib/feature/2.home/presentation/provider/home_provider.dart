@@ -57,6 +57,7 @@ part 'home_provider.g.dart';
 @Riverpod(keepAlive: true)
 HomeApiService homeApiService(HomeApiServiceRef ref) {
   final dio = Dio();
+  dio.options.contentType = Headers.jsonContentType;
   dio.interceptors.add(
     // onRequest -> 성공 -> onResponse
     //                  -> 실패 -> onError -> 토큰 재발급 -> 다시 시작 -> onRequest -> 성공 -> onResponse -> .g serialize -> model return

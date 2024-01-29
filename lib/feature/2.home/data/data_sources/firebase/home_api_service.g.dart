@@ -97,6 +97,34 @@ class _HomeApiService implements HomeApiService {
   Future<void> patchMemberId(
     String teamId,
     String memberId,
+    DataRequest request,
+  ) async {
+    const _extra = <String, dynamic>{};
+    final queryParameters = <String, dynamic>{};
+    final _headers = <String, dynamic>{};
+    final _data = request;
+    await _dio.fetch<void>(_setStreamType<void>(Options(
+      method: 'PATCH',
+      headers: _headers,
+      extra: _extra,
+    )
+        .compose(
+          _dio.options,
+          'city1/${teamId}/member/${memberId}',
+          queryParameters: queryParameters,
+          data: _data,
+        )
+        .copyWith(
+            baseUrl: _combineBaseUrls(
+          _dio.options.baseUrl,
+          baseUrl,
+        ))));
+  }
+
+  @override
+  Future<void> patchMemberIdString(
+    String teamId,
+    String memberId,
     String request,
   ) async {
     const _extra = <String, dynamic>{};
