@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "116453369555",
+    "project_id": "fir-test-795ee",
+    "storage_bucket": "fir-test-795ee.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:116453369555:android:537bf4601110c31ee8d626",
+        "android_client_info": {
+          "package_name": "com.kimdane.firebase_test"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDNgRKeeXbf4O_M2M-Ss3YoBhC8jS7RRsI"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
