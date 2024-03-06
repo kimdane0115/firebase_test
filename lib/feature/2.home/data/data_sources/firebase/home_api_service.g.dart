@@ -23,10 +23,10 @@ class _HomeApiService implements HomeApiService {
 
   @override
   Future<void> getUserData(String userId) async {
-    const _extra = <String, dynamic>{};
+    final _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
     final _headers = <String, dynamic>{};
-    final Map<String, dynamic>? _data = null;
+    const Map<String, dynamic>? _data = null;
     await _dio.fetch<void>(_setStreamType<void>(Options(
       method: 'GET',
       headers: _headers,
@@ -47,10 +47,10 @@ class _HomeApiService implements HomeApiService {
 
   @override
   Future<void> getTeam(String teamId) async {
-    const _extra = <String, dynamic>{};
+    final _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
     final _headers = <String, dynamic>{};
-    final Map<String, dynamic>? _data = null;
+    const Map<String, dynamic>? _data = null;
     await _dio.fetch<void>(_setStreamType<void>(Options(
       method: 'GET',
       headers: _headers,
@@ -70,36 +70,42 @@ class _HomeApiService implements HomeApiService {
   }
 
   @override
-  Future<void> getMember(String teamId) async {
-    const _extra = <String, dynamic>{};
+  Future<CommonRequest<MemberModel>> getMember(String teamId) async {
+    final _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
     final _headers = <String, dynamic>{};
-    final Map<String, dynamic>? _data = null;
-    await _dio.fetch<void>(_setStreamType<void>(Options(
+    const Map<String, dynamic>? _data = null;
+    final _result = await _dio.fetch<Map<String, dynamic>>(
+        _setStreamType<CommonRequest<MemberModel>>(Options(
       method: 'GET',
       headers: _headers,
       extra: _extra,
     )
-        .compose(
-          _dio.options,
-          'city1/${teamId}/member',
-          queryParameters: queryParameters,
-          data: _data,
-        )
-        .copyWith(
-            baseUrl: _combineBaseUrls(
-          _dio.options.baseUrl,
-          baseUrl,
-        ))));
+            .compose(
+              _dio.options,
+              'city1/${teamId}/member',
+              queryParameters: queryParameters,
+              data: _data,
+            )
+            .copyWith(
+                baseUrl: _combineBaseUrls(
+              _dio.options.baseUrl,
+              baseUrl,
+            ))));
+    final value = CommonRequest<MemberModel>.fromJson(
+      _result.data!,
+      (json) => MemberModel.fromJson(json as Map<String, dynamic>),
+    );
+    return value;
   }
 
   @override
   Future<void> patchMemberId(
     String teamId,
     String memberId,
-    DataRequest request,
+    DataRequest<MemberModel> request,
   ) async {
-    const _extra = <String, dynamic>{};
+    final _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
     final _headers = <String, dynamic>{};
     final _data = request;
@@ -122,15 +128,16 @@ class _HomeApiService implements HomeApiService {
   }
 
   @override
-  Future<void> patchMemberIdString(
+  Future<void> patchMemberIdCommon(
     String teamId,
     String memberId,
-    String request,
+    CommonRequest<MemberModel> request,
   ) async {
-    const _extra = <String, dynamic>{};
+    final _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
     final _headers = <String, dynamic>{};
-    final _data = request;
+    final _data = <String, dynamic>{};
+    _data.addAll(request.toJson((value) => value.toJson()));
     await _dio.fetch<void>(_setStreamType<void>(Options(
       method: 'PATCH',
       headers: _headers,
@@ -139,6 +146,96 @@ class _HomeApiService implements HomeApiService {
         .compose(
           _dio.options,
           'city1/${teamId}/member/${memberId}',
+          queryParameters: queryParameters,
+          data: _data,
+        )
+        .copyWith(
+            baseUrl: _combineBaseUrls(
+          _dio.options.baseUrl,
+          baseUrl,
+        ))));
+  }
+
+  @override
+  Future<void> patchMemberRecordYear(
+    String teamId,
+    String memberId,
+    String year,
+    CommonRequest<RecordModel> request,
+  ) async {
+    final _extra = <String, dynamic>{};
+    final queryParameters = <String, dynamic>{};
+    final _headers = <String, dynamic>{};
+    final _data = <String, dynamic>{};
+    _data.addAll(request.toJson((value) => value.toJson()));
+    await _dio.fetch<void>(_setStreamType<void>(Options(
+      method: 'PATCH',
+      headers: _headers,
+      extra: _extra,
+    )
+        .compose(
+          _dio.options,
+          'city1/${teamId}/member/${memberId}/record_year/${year}',
+          queryParameters: queryParameters,
+          data: _data,
+        )
+        .copyWith(
+            baseUrl: _combineBaseUrls(
+          _dio.options.baseUrl,
+          baseUrl,
+        ))));
+  }
+
+  @override
+  Future<void> patchMemberRecordMonth(
+    String teamId,
+    String memberId,
+    String year,
+    CommonRequest<RecordModel> request,
+  ) async {
+    final _extra = <String, dynamic>{};
+    final queryParameters = <String, dynamic>{};
+    final _headers = <String, dynamic>{};
+    final _data = <String, dynamic>{};
+    _data.addAll(request.toJson((value) => value.toJson()));
+    await _dio.fetch<void>(_setStreamType<void>(Options(
+      method: 'PATCH',
+      headers: _headers,
+      extra: _extra,
+    )
+        .compose(
+          _dio.options,
+          'city1/${teamId}/member/${memberId}/record_month/${year}',
+          queryParameters: queryParameters,
+          data: _data,
+        )
+        .copyWith(
+            baseUrl: _combineBaseUrls(
+          _dio.options.baseUrl,
+          baseUrl,
+        ))));
+  }
+
+  @override
+  Future<void> patchMemberRecordDay(
+    String teamId,
+    String memberId,
+    String year,
+    CommonRequest<RecordModel> request,
+  ) async {
+    final _extra = <String, dynamic>{};
+    final queryParameters = <String, dynamic>{};
+    final _headers = <String, dynamic>{};
+    final _data = <String, dynamic>{};
+    _data.addAll(request.toJson((value) => value.toJson()));
+    await _dio.fetch<void>(_setStreamType<void>(Options(
+      method: 'PATCH',
+      headers: _headers,
+      extra: _extra,
+    )
+        .compose(
+          _dio.options,
+          'city1/${teamId}/member/${memberId}/record_day/${year}',
           queryParameters: queryParameters,
           data: _data,
         )
@@ -151,7 +248,7 @@ class _HomeApiService implements HomeApiService {
 
   @override
   Future<void> signInByEmail(String request) async {
-    const _extra = <String, dynamic>{};
+    final _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
     final _headers = <String, dynamic>{};
     final _data = request;

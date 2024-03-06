@@ -1,26 +1,24 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'data_request.dart';
+part of 'common_request.dart';
 
 // **************************************************************************
 // JsonSerializableGenerator
 // **************************************************************************
 
-_$DataRequestDataImpl<T> _$$DataRequestDataImplFromJson<T>(
+CommonRequest<T> _$CommonRequestFromJson<T>(
   Map<String, dynamic> json,
   T Function(Object? json) fromJsonT,
 ) =>
-    _$DataRequestDataImpl<T>(
-      json['name'] as String?,
-      _$nullableGenericFromJson(json['fields'], fromJsonT),
+    CommonRequest<T>(
+      fields: _$nullableGenericFromJson(json['fields'], fromJsonT),
     );
 
-Map<String, dynamic> _$$DataRequestDataImplToJson<T>(
-  _$DataRequestDataImpl<T> instance,
+Map<String, dynamic> _$CommonRequestToJson<T>(
+  CommonRequest<T> instance,
   Object? Function(T value) toJsonT,
 ) =>
     <String, dynamic>{
-      'name': instance.name,
       'fields': _$nullableGenericToJson(instance.fields, toJsonT),
     };
 

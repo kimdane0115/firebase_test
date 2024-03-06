@@ -5,7 +5,7 @@ part 'member_model.g.dart';
 
 @freezed
 class MemberModel with _$MemberModel {
-  @JsonSerializable(includeIfNull: false)
+  @JsonSerializable(includeIfNull: false, explicitToJson: true)
   factory MemberModel({
     required Map<String, dynamic> memberName,
     required Map<String, dynamic> memberNumber,

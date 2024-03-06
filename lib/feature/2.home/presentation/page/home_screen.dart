@@ -1,9 +1,11 @@
 import 'package:firebase_test/feature/2.home/data/models/data_request.dart';
 import 'package:firebase_test/feature/2.home/data/models/member_model.dart';
+import 'package:firebase_test/feature/2.home/data/models/record_model.dart';
 import 'package:firebase_test/feature/2.home/presentation/provider/home_provider.dart';
 
 import '../../../../core/constants/index.dart';
 import '../../../../flavors.dart';
+import '../../data/models/common_request.dart';
 
 
 const String bodyStr = '''{
@@ -42,24 +44,45 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
     // fields['member_id'] = {"stringValue": "1"};
     // fields['phone'] = {"stringValue": "010-1234-4321"};
 
+    RecordModel record = RecordModel(
+      game: {"stringValue": "1"},
+      goal: {"stringValue": "5"},
+      assist: {"stringValue": "1"},
+      mom: {"stringValue": "6"},
+    );
+
     MemberModel data = MemberModel(
-      memberName: {"stringValue": "zidane16"},
-      memberNumber: {"stringValue": "16"},
-      memberId: {"stringValue": "6"},
+      memberName: {"stringValue": "zidane20"},
+      memberNumber: {"integerValue": 20},
+      memberId: {"stringValue": "20"},
       phone: {"stringValue": "010-1234-4321"},
     );
 
-    DataRequest model = DataRequest(
-      // name: "",
-      fields: data,
-      // createTime: '2024-01-25T07:15:58.443669Z',
-      // updateTime: '2024-01-25T07:15:58.443669Z',
-    );
+    DataRequest<MemberModel> model = DataRequest.data("", data);
+    // CommonRequest<MemberModel> commonModel = CommonRequest(name: "", fields: data);
+    CommonRequest<MemberModel> commonModel = CommonRequest(fields: data);
+    CommonRequest<RecordModel> recordModel = CommonRequest(fields: record);
+
+    // DataRequest<MemberModel> model = DataRequest<MemberModel>(
+    //   // name: "",
+    //   fields: data,
+    //   // createTime: '2024-01-25T07:15:58.443669Z',
+    //   // updateTime: '2024-01-25T07:15:58.443669Z',
+    // );
     // await ref.read(homeRepositoryProvider).getTeam('best');
-    // await ref.read(homeRepositoryProvider).getMember('best');
-    await ref.read(homeRepositoryProvider).patchMemberId("borussia", "zidane16", model);
-    print('>>>> ${jsonEncode(model)}');
+    // await ref.read(homeRepositoryProvider).getMember('fccall');
+
+    // print('>>>> ${commonModel.toString()}');
+    // print('>>>> ${model.toString()}');
+    // print('>>>> ${jsonEncode(model.toString())}');
+    // model.toJson((p0) {
+    //   print('>>>> ${jsonEncode(p0)}');
+    // });
+    // print('>>> ${model.toJson((p0) => null)}');
+    // await ref.read(homeRepositoryProvider).patchMemberId("borussia", "zidane18", model);
+    await ref.read(homeRepositoryProvider).patchMemberIdCommon("fccall", "zidane20", commonModel);
     // await ref.read(homeRepositoryProvider).patchMemberIdString("best", "zidane17", jsonEncode(model));
+    // await ref.read(homeRepositoryProvider).patchMemberRecordYear("borussia", "zidane19", "2024", recordModel);
   }
 
   @override
@@ -69,8 +92,8 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
         builder: (_, ref, __) {
           return Scaffold(
             appBar: AppBar(
-              title: Text(
-                F.title,
+              title: const Text(
+                '',
               ),
             ),
             body: home(),

@@ -1,9 +1,12 @@
 
 
+import 'package:firebase_test/feature/2.home/data/models/record_model.dart';
 import 'package:firebase_test/feature/2.home/domain/repository/home_repository.dart';
 
 import '../data_sources/firebase/home_api_service.dart';
+import '../models/common_request.dart';
 import '../models/data_request.dart';
+import '../models/member_model.dart';
 
 class HomeRepositoryImpl implements HomeRepository {
   final HomeApiService _homeApiService;
@@ -35,14 +38,22 @@ class HomeRepositoryImpl implements HomeRepository {
   }
   
   @override
-  Future<void> patchMemberId(String teamId, String memberId, DataRequest request) async {
+  Future<void> patchMemberId(String teamId, String memberId, DataRequest<MemberModel> request) async {
     var res = await _homeApiService.patchMemberId(teamId, memberId, request);
     // throw UnimplementedError();
   }
   
   @override
-  Future<void> patchMemberIdString(String teamId, String memberId, String request) async {
-    var res = await _homeApiService.patchMemberIdString(teamId, memberId, request);
+  Future<void> patchMemberIdCommon(String teamId, String memberId, CommonRequest<MemberModel> request) async {
+    var res = await _homeApiService.patchMemberIdCommon(teamId, memberId, request);
+    // throw UnimplementedError();
+  }
+
+  @override
+  Future<void> patchMemberRecordYear(String teamId, String memberId,
+      String year, CommonRequest<RecordModel> request) async {
+    var res = await _homeApiService.patchMemberRecordYear(
+        teamId, memberId, year, request);
     // throw UnimplementedError();
   }
   

@@ -71,6 +71,7 @@ HomeApiService homeApiService(HomeApiServiceRef ref) {
       // 예를 들어, 상태 코드에 따라 오류 처리를 할 수 있습니다.
       onResponse: (Response response, ResponseInterceptorHandler handler) {
         print('>>>>>>> response : ${response.data}');
+        print('>>>> ${response.statusCode}, ${response.statusMessage}');
         return handler.next(response);
         // if (response.data!['success']) {
         //   return handler.next(response);
@@ -97,6 +98,6 @@ HomeApiService homeApiService(HomeApiServiceRef ref) {
 
 @Riverpod(keepAlive: true)
 HomeRepository homeRepository(HomeRepositoryRef ref) {
-  final signInApiService = ref.read(homeApiServiceProvider);
-  return HomeRepositoryImpl(signInApiService);
+  final homeApiService = ref.read(homeApiServiceProvider);
+  return HomeRepositoryImpl(homeApiService);
 }
