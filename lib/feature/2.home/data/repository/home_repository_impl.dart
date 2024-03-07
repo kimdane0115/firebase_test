@@ -1,11 +1,13 @@
 
 
+import 'package:firebase_test/feature/2.home/data/models/firebase_data_response.dart';
 import 'package:firebase_test/feature/2.home/data/models/record_model.dart';
 import 'package:firebase_test/feature/2.home/domain/repository/home_repository.dart';
 
 import '../data_sources/firebase/home_api_service.dart';
 import '../models/common_request.dart';
 import '../models/data_request.dart';
+import '../models/data_response.dart';
 import '../models/member_model.dart';
 
 class HomeRepositoryImpl implements HomeRepository {
@@ -22,6 +24,9 @@ class HomeRepositoryImpl implements HomeRepository {
   @override
   Future<void> getMember(String teamId) async {
     var res = await _homeApiService.getMember(teamId);
+    for(FirebaseDataResponse<MemberModel> item in res.documents!) {
+      print('res : ${item.fields!.memberName}, ${int.parse(item.fields!.memberNumber.values.first)+1}');
+    }
     // throw UnimplementedError();
   }
   

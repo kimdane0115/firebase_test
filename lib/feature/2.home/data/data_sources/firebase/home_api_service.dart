@@ -1,6 +1,8 @@
 
 
 import 'package:dio/dio.dart';
+import 'package:firebase_test/feature/2.home/data/models/data_response.dart';
+import 'package:firebase_test/feature/2.home/data/models/firebase_data_response.dart';
 import 'package:firebase_test/feature/2.home/data/models/record_model.dart';
 import 'package:retrofit/http.dart';
 import 'package:retrofit/retrofit.dart';
@@ -23,7 +25,7 @@ abstract class HomeApiService {
   Future<void> getTeam(@Path("teamId") String teamId);
 
   @GET("city1/{teamId}/member")
-  Future<void> getMember(@Path("teamId") String teamId);
+  Future<DataResponse<List<FirebaseDataResponse<MemberModel>>>> getMember(@Path("teamId") String teamId);
 
   @PATCH('city1/{teamId}/member/{memberId}')
   Future<void> patchMemberId(@Path("teamId") String teamId,

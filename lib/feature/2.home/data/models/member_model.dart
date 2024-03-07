@@ -8,7 +8,7 @@ class MemberModel with _$MemberModel {
   @JsonSerializable(includeIfNull: false, explicitToJson: true)
   factory MemberModel({
     required Map<String, dynamic> memberName,
-    required Map<String, dynamic> memberNumber,
+    required Map<String, String> memberNumber,
     required Map<String, dynamic> memberId,
     required Map<String, dynamic> phone,
     // required String createTime,

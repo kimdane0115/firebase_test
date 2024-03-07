@@ -70,8 +70,8 @@ HomeApiService homeApiService(HomeApiServiceRef ref) {
       // Response를 받은 후에 실행됩니다.
       // 예를 들어, 상태 코드에 따라 오류 처리를 할 수 있습니다.
       onResponse: (Response response, ResponseInterceptorHandler handler) {
-        print('>>>>>>> response : ${response.data}');
-        print('>>>> ${response.statusCode}, ${response.statusMessage}');
+        // print('>>>>>>> response : ${response.data}');
+        // print('>>>> ${response.statusCode}, ${response.statusMessage}');
         return handler.next(response);
         // if (response.data!['success']) {
         //   return handler.next(response);

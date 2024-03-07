@@ -70,27 +70,45 @@ class _HomeApiService implements HomeApiService {
   }
 
   @override
-  Future<void> getMember(String teamId) async {
+  Future<DataResponse<List<FirebaseDataResponse<MemberModel>>>> getMember(
+      String teamId) async {
     final _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
     final _headers = <String, dynamic>{};
     const Map<String, dynamic>? _data = null;
-    await _dio.fetch<void>(_setStreamType<void>(Options(
+    final _result = await _dio.fetch<Map<String, dynamic>>(
+        _setStreamType<DataResponse<List<FirebaseDataResponse<MemberModel>>>>(
+            Options(
       method: 'GET',
       headers: _headers,
       extra: _extra,
     )
-        .compose(
-          _dio.options,
-          'city1/${teamId}/member',
-          queryParameters: queryParameters,
-          data: _data,
-        )
-        .copyWith(
-            baseUrl: _combineBaseUrls(
-          _dio.options.baseUrl,
-          baseUrl,
-        ))));
+                .compose(
+                  _dio.options,
+                  'city1/${teamId}/member',
+                  queryParameters: queryParameters,
+                  data: _data,
+                )
+                .copyWith(
+                    baseUrl: _combineBaseUrls(
+                  _dio.options.baseUrl,
+                  baseUrl,
+                ))));
+    final value =
+        DataResponse<List<FirebaseDataResponse<MemberModel>>>.fromJson(
+      _result.data!,
+      (json) => json is List<dynamic>
+          ? json
+              .map<FirebaseDataResponse<MemberModel>>(
+                  (i) => FirebaseDataResponse<MemberModel>.fromJson(
+                        i as Map<String, dynamic>,
+                        (json) =>
+                            MemberModel.fromJson(json as Map<String, dynamic>),
+                      ))
+              .toList()
+          : List.empty(),
+    );
+    return value;
   }
 
   @override

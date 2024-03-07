@@ -21,7 +21,7 @@ MemberModel _$MemberModelFromJson(Map<String, dynamic> json) {
 /// @nodoc
 mixin _$MemberModel {
   Map<String, dynamic> get memberName => throw _privateConstructorUsedError;
-  Map<String, dynamic> get memberNumber => throw _privateConstructorUsedError;
+  Map<String, String> get memberNumber => throw _privateConstructorUsedError;
   Map<String, dynamic> get memberId => throw _privateConstructorUsedError;
   Map<String, dynamic> get phone => throw _privateConstructorUsedError;
 
@@ -39,7 +39,7 @@ abstract class $MemberModelCopyWith<$Res> {
   @useResult
   $Res call(
       {Map<String, dynamic> memberName,
-      Map<String, dynamic> memberNumber,
+      Map<String, String> memberNumber,
       Map<String, dynamic> memberId,
       Map<String, dynamic> phone});
 }
@@ -70,7 +70,7 @@ class _$MemberModelCopyWithImpl<$Res, $Val extends MemberModel>
       memberNumber: null == memberNumber
           ? _value.memberNumber
           : memberNumber // ignore: cast_nullable_to_non_nullable
-              as Map<String, dynamic>,
+              as Map<String, String>,
       memberId: null == memberId
           ? _value.memberId
           : memberId // ignore: cast_nullable_to_non_nullable
@@ -93,7 +93,7 @@ abstract class _$$MemberModelImplCopyWith<$Res>
   @useResult
   $Res call(
       {Map<String, dynamic> memberName,
-      Map<String, dynamic> memberNumber,
+      Map<String, String> memberNumber,
       Map<String, dynamic> memberId,
       Map<String, dynamic> phone});
 }
@@ -122,7 +122,7 @@ class __$$MemberModelImplCopyWithImpl<$Res>
       memberNumber: null == memberNumber
           ? _value._memberNumber
           : memberNumber // ignore: cast_nullable_to_non_nullable
-              as Map<String, dynamic>,
+              as Map<String, String>,
       memberId: null == memberId
           ? _value._memberId
           : memberId // ignore: cast_nullable_to_non_nullable
@@ -141,7 +141,7 @@ class __$$MemberModelImplCopyWithImpl<$Res>
 class _$MemberModelImpl implements _MemberModel {
   _$MemberModelImpl(
       {required final Map<String, dynamic> memberName,
-      required final Map<String, dynamic> memberNumber,
+      required final Map<String, String> memberNumber,
       required final Map<String, dynamic> memberId,
       required final Map<String, dynamic> phone})
       : _memberName = memberName,
@@ -160,9 +160,9 @@ class _$MemberModelImpl implements _MemberModel {
     return EqualUnmodifiableMapView(_memberName);
   }
 
-  final Map<String, dynamic> _memberNumber;
+  final Map<String, String> _memberNumber;
   @override
-  Map<String, dynamic> get memberNumber {
+  Map<String, String> get memberNumber {
     if (_memberNumber is EqualUnmodifiableMapView) return _memberNumber;
     // ignore: implicit_dynamic_type
     return EqualUnmodifiableMapView(_memberNumber);
@@ -228,7 +228,7 @@ class _$MemberModelImpl implements _MemberModel {
 abstract class _MemberModel implements MemberModel {
   factory _MemberModel(
       {required final Map<String, dynamic> memberName,
-      required final Map<String, dynamic> memberNumber,
+      required final Map<String, String> memberNumber,
       required final Map<String, dynamic> memberId,
       required final Map<String, dynamic> phone}) = _$MemberModelImpl;
 
@@ -238,7 +238,7 @@ abstract class _MemberModel implements MemberModel {
   @override
   Map<String, dynamic> get memberName;
   @override
-  Map<String, dynamic> get memberNumber;
+  Map<String, String> get memberNumber;
   @override
   Map<String, dynamic> get memberId;
   @override

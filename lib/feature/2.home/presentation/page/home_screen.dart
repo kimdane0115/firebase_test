@@ -53,7 +53,7 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
 
     MemberModel data = MemberModel(
       memberName: {"stringValue": "zidane20"},
-      memberNumber: {"integerValue": 20},
+      memberNumber: {"integerValue": '20'},
       memberId: {"stringValue": "20"},
       phone: {"stringValue": "010-1234-4321"},
     );
@@ -70,7 +70,7 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
     //   // updateTime: '2024-01-25T07:15:58.443669Z',
     // );
     // await ref.read(homeRepositoryProvider).getTeam('best');
-    // await ref.read(homeRepositoryProvider).getMember('fccall');
+    await ref.read(homeRepositoryProvider).getMember('fccall');
 
     // print('>>>> ${commonModel.toString()}');
     // print('>>>> ${model.toString()}');
@@ -80,7 +80,7 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
     // });
     // print('>>> ${model.toJson((p0) => null)}');
     // await ref.read(homeRepositoryProvider).patchMemberId("borussia", "zidane18", model);
-    await ref.read(homeRepositoryProvider).patchMemberIdCommon("borussia", "zidane20", commonModel);
+    // await ref.read(homeRepositoryProvider).patchMemberIdCommon("borussia", "zidane20", commonModel);
     // await ref.read(homeRepositoryProvider).patchMemberIdString("best", "zidane17", jsonEncode(model));
     // await ref.read(homeRepositoryProvider).patchMemberRecordYear("borussia", "zidane19", "2024", recordModel);
   }
