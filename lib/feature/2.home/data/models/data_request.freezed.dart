@@ -14,49 +14,11 @@ T _$identity<T>(T value) => value;
 final _privateConstructorUsedError = UnsupportedError(
     'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
 
-DataRequest<T> _$DataRequestFromJson<T>(
-    Map<String, dynamic> json, T Function(Object?) fromJsonT) {
-  return DataRequestData<T>.fromJson(json, fromJsonT);
-}
-
 /// @nodoc
 mixin _$DataRequest<T> {
-  String? get name => throw _privateConstructorUsedError;
-  T? get fields => throw _privateConstructorUsedError;
-  @optionalTypeArgs
-  TResult when<TResult extends Object?>({
-    required TResult Function(String? name, T? fields) data,
-  }) =>
-      throw _privateConstructorUsedError;
-  @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(String? name, T? fields)? data,
-  }) =>
-      throw _privateConstructorUsedError;
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>({
-    TResult Function(String? name, T? fields)? data,
-    required TResult orElse(),
-  }) =>
-      throw _privateConstructorUsedError;
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>({
-    required TResult Function(DataRequestData<T> value) data,
-  }) =>
-      throw _privateConstructorUsedError;
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(DataRequestData<T> value)? data,
-  }) =>
-      throw _privateConstructorUsedError;
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>({
-    TResult Function(DataRequestData<T> value)? data,
-    required TResult orElse(),
-  }) =>
-      throw _privateConstructorUsedError;
-  Map<String, dynamic> toJson(Object? Function(T) toJsonT) =>
-      throw _privateConstructorUsedError;
+// required int iconCodePoint,
+  T? get data => throw _privateConstructorUsedError;
+
   @JsonKey(ignore: true)
   $DataRequestCopyWith<T, DataRequest<T>> get copyWith =>
       throw _privateConstructorUsedError;
@@ -68,7 +30,7 @@ abstract class $DataRequestCopyWith<T, $Res> {
           DataRequest<T> value, $Res Function(DataRequest<T>) then) =
       _$DataRequestCopyWithImpl<T, $Res, DataRequest<T>>;
   @useResult
-  $Res call({String? name, T? fields});
+  $Res call({T? data});
 }
 
 /// @nodoc
@@ -84,55 +46,45 @@ class _$DataRequestCopyWithImpl<T, $Res, $Val extends DataRequest<T>>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? name = freezed,
-    Object? fields = freezed,
+    Object? data = freezed,
   }) {
     return _then(_value.copyWith(
-      name: freezed == name
-          ? _value.name
-          : name // ignore: cast_nullable_to_non_nullable
-              as String?,
-      fields: freezed == fields
-          ? _value.fields
-          : fields // ignore: cast_nullable_to_non_nullable
+      data: freezed == data
+          ? _value.data
+          : data // ignore: cast_nullable_to_non_nullable
               as T?,
     ) as $Val);
   }
 }
 
 /// @nodoc
-abstract class _$$DataRequestDataImplCopyWith<T, $Res>
+abstract class _$$DataRequestImplCopyWith<T, $Res>
     implements $DataRequestCopyWith<T, $Res> {
-  factory _$$DataRequestDataImplCopyWith(_$DataRequestDataImpl<T> value,
-          $Res Function(_$DataRequestDataImpl<T>) then) =
-      __$$DataRequestDataImplCopyWithImpl<T, $Res>;
+  factory _$$DataRequestImplCopyWith(_$DataRequestImpl<T> value,
+          $Res Function(_$DataRequestImpl<T>) then) =
+      __$$DataRequestImplCopyWithImpl<T, $Res>;
   @override
   @useResult
-  $Res call({String? name, T? fields});
+  $Res call({T? data});
 }
 
 /// @nodoc
-class __$$DataRequestDataImplCopyWithImpl<T, $Res>
-    extends _$DataRequestCopyWithImpl<T, $Res, _$DataRequestDataImpl<T>>
-    implements _$$DataRequestDataImplCopyWith<T, $Res> {
-  __$$DataRequestDataImplCopyWithImpl(_$DataRequestDataImpl<T> _value,
-      $Res Function(_$DataRequestDataImpl<T>) _then)
+class __$$DataRequestImplCopyWithImpl<T, $Res>
+    extends _$DataRequestCopyWithImpl<T, $Res, _$DataRequestImpl<T>>
+    implements _$$DataRequestImplCopyWith<T, $Res> {
+  __$$DataRequestImplCopyWithImpl(
+      _$DataRequestImpl<T> _value, $Res Function(_$DataRequestImpl<T>) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? name = freezed,
-    Object? fields = freezed,
+    Object? data = freezed,
   }) {
-    return _then(_$DataRequestDataImpl<T>(
-      freezed == name
-          ? _value.name
-          : name // ignore: cast_nullable_to_non_nullable
-              as String?,
-      freezed == fields
-          ? _value.fields
-          : fields // ignore: cast_nullable_to_non_nullable
+    return _then(_$DataRequestImpl<T>(
+      data: freezed == data
+          ? _value.data
+          : data // ignore: cast_nullable_to_non_nullable
               as T?,
     ));
   }
@@ -140,122 +92,46 @@ class __$$DataRequestDataImplCopyWithImpl<T, $Res>
 
 /// @nodoc
 
-@JsonSerializable(
-    explicitToJson: true, genericArgumentFactories: true, createToJson: true)
-class _$DataRequestDataImpl<T> implements DataRequestData<T> {
-  const _$DataRequestDataImpl(this.name, this.fields);
+class _$DataRequestImpl<T> extends _DataRequest<T> {
+  const _$DataRequestImpl({this.data}) : super._();
 
-  factory _$DataRequestDataImpl.fromJson(
-          Map<String, dynamic> json, T Function(Object?) fromJsonT) =>
-      _$$DataRequestDataImplFromJson(json, fromJsonT);
-
+// required int iconCodePoint,
   @override
-  final String? name;
-  @override
-  final T? fields;
+  final T? data;
 
   @override
   String toString() {
-    return 'DataRequest<$T>.data(name: $name, fields: $fields)';
+    return 'DataRequest<$T>(data: $data)';
   }
 
   @override
   bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$DataRequestDataImpl<T> &&
-            (identical(other.name, name) || other.name == name) &&
-            const DeepCollectionEquality().equals(other.fields, fields));
+            other is _$DataRequestImpl<T> &&
+            const DeepCollectionEquality().equals(other.data, data));
   }
 
-  @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(
-      runtimeType, name, const DeepCollectionEquality().hash(fields));
+  int get hashCode =>
+      Object.hash(runtimeType, const DeepCollectionEquality().hash(data));
 
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$DataRequestDataImplCopyWith<T, _$DataRequestDataImpl<T>> get copyWith =>
-      __$$DataRequestDataImplCopyWithImpl<T, _$DataRequestDataImpl<T>>(
+  _$$DataRequestImplCopyWith<T, _$DataRequestImpl<T>> get copyWith =>
+      __$$DataRequestImplCopyWithImpl<T, _$DataRequestImpl<T>>(
           this, _$identity);
-
-  @override
-  @optionalTypeArgs
-  TResult when<TResult extends Object?>({
-    required TResult Function(String? name, T? fields) data,
-  }) {
-    return data(name, fields);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(String? name, T? fields)? data,
-  }) {
-    return data?.call(name, fields);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>({
-    TResult Function(String? name, T? fields)? data,
-    required TResult orElse(),
-  }) {
-    if (data != null) {
-      return data(name, fields);
-    }
-    return orElse();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>({
-    required TResult Function(DataRequestData<T> value) data,
-  }) {
-    return data(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(DataRequestData<T> value)? data,
-  }) {
-    return data?.call(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>({
-    TResult Function(DataRequestData<T> value)? data,
-    required TResult orElse(),
-  }) {
-    if (data != null) {
-      return data(this);
-    }
-    return orElse();
-  }
-
-  @override
-  Map<String, dynamic> toJson(Object? Function(T) toJsonT) {
-    return _$$DataRequestDataImplToJson<T>(this, toJsonT);
-  }
 }
 
-abstract class DataRequestData<T> implements DataRequest<T> {
-  const factory DataRequestData(final String? name, final T? fields) =
-      _$DataRequestDataImpl<T>;
+abstract class _DataRequest<T> extends DataRequest<T> {
+  const factory _DataRequest({final T? data}) = _$DataRequestImpl<T>;
+  const _DataRequest._() : super._();
 
-  factory DataRequestData.fromJson(
-          Map<String, dynamic> json, T Function(Object?) fromJsonT) =
-      _$DataRequestDataImpl<T>.fromJson;
-
-  @override
-  String? get name;
-  @override
-  T? get fields;
+  @override // required int iconCodePoint,
+  T? get data;
   @override
   @JsonKey(ignore: true)
-  _$$DataRequestDataImplCopyWith<T, _$DataRequestDataImpl<T>> get copyWith =>
+  _$$DataRequestImplCopyWith<T, _$DataRequestImpl<T>> get copyWith =>
       throw _privateConstructorUsedError;
 }

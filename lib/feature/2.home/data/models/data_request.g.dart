@@ -6,22 +6,20 @@ part of 'data_request.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-_$DataRequestDataImpl<T> _$$DataRequestDataImplFromJson<T>(
+DataRequest<T> _$DataRequestFromJson<T>(
   Map<String, dynamic> json,
   T Function(Object? json) fromJsonT,
 ) =>
-    _$DataRequestDataImpl<T>(
-      json['name'] as String?,
-      _$nullableGenericFromJson(json['fields'], fromJsonT),
+    DataRequest<T>(
+      data: _$nullableGenericFromJson(json['data'], fromJsonT),
     );
 
-Map<String, dynamic> _$$DataRequestDataImplToJson<T>(
-  _$DataRequestDataImpl<T> instance,
+Map<String, dynamic> _$DataRequestToJson<T>(
+  DataRequest<T> instance,
   Object? Function(T value) toJsonT,
 ) =>
     <String, dynamic>{
-      'name': instance.name,
-      'fields': _$nullableGenericToJson(instance.fields, toJsonT),
+      'data': _$nullableGenericToJson(instance.data, toJsonT),
     };
 
 T? _$nullableGenericFromJson<T>(

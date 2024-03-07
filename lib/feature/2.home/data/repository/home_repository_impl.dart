@@ -39,7 +39,7 @@ class HomeRepositoryImpl implements HomeRepository {
   
   @override
   Future<void> patchMemberId(String teamId, String memberId, DataRequest<MemberModel> request) async {
-    var res = await _homeApiService.patchMemberId(teamId, memberId, request);
+    // var res = await _homeApiService.patchMemberId(teamId, memberId, request);
     // throw UnimplementedError();
   }
   

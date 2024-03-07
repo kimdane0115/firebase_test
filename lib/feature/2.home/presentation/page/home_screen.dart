@@ -58,7 +58,7 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
       phone: {"stringValue": "010-1234-4321"},
     );
 
-    DataRequest<MemberModel> model = DataRequest.data("", data);
+    DataRequest<MemberModel> model = DataRequest(data: data);
     // CommonRequest<MemberModel> commonModel = CommonRequest(name: "", fields: data);
     CommonRequest<MemberModel> commonModel = CommonRequest(fields: data);
     CommonRequest<RecordModel> recordModel = CommonRequest(fields: record);
@@ -80,7 +80,7 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
     // });
     // print('>>> ${model.toJson((p0) => null)}');
     // await ref.read(homeRepositoryProvider).patchMemberId("borussia", "zidane18", model);
-    await ref.read(homeRepositoryProvider).patchMemberIdCommon("fccall", "zidane20", commonModel);
+    await ref.read(homeRepositoryProvider).patchMemberIdCommon("borussia", "zidane20", commonModel);
     // await ref.read(homeRepositoryProvider).patchMemberIdString("best", "zidane17", jsonEncode(model));
     // await ref.read(homeRepositoryProvider).patchMemberRecordYear("borussia", "zidane19", "2024", recordModel);
   }

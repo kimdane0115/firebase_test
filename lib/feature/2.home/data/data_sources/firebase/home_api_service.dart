@@ -54,6 +54,6 @@ abstract class HomeApiService {
       @Path("day") String year,
       @Body() CommonRequest<RecordModel> request);
 
-  @POST('/sign-in/by-email')
-  Future<void> signInByEmail(@Body() String request);
+  // @POST('/sign-in/by-email')
+  // Future<void> signInByEmail(@Body() String request);
 }
