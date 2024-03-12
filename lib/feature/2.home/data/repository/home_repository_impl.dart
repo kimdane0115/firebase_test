@@ -1,14 +1,14 @@
 
 
-import 'package:firebase_test/feature/2.home/data/models/firebase_data_response.dart';
-import 'package:firebase_test/feature/2.home/data/models/record_model.dart';
-import 'package:firebase_test/feature/2.home/domain/repository/home_repository.dart';
 
+import '../../domain/entities/member.dart';
+import '../../domain/repository/home_repository.dart';
 import '../data_sources/firebase/home_api_service.dart';
 import '../models/common_request.dart';
 import '../models/data_request.dart';
-import '../models/data_response.dart';
+import '../models/firebase_data_response.dart';
 import '../models/member_model.dart';
+import '../models/record_model.dart';
 
 class HomeRepositoryImpl implements HomeRepository {
   final HomeApiService _homeApiService;
@@ -22,11 +22,20 @@ class HomeRepositoryImpl implements HomeRepository {
   }
 
   @override
-  Future<void> getMember(String teamId) async {
+  Future<List<Member>> getMember(String teamId) async {
     var res = await _homeApiService.getMember(teamId);
+    List<Member> mList = [];
     for(FirebaseDataResponse<MemberModel> item in res.documents!) {
       print('res : ${item.fields!.memberName}, ${int.parse(item.fields!.memberNumber.values.first)+1}');
+      Member member = Member(
+        memberName: item.fields!.memberName.values.first,
+        memberNumber: int.parse(item.fields!.memberNumber.values.first),
+        memberId: item.fields!.memberId.values.first ,
+        phone: item.fields!.phone.values.first,
+      );
+      mList.add(member);
     }
+    return mList;
     // throw UnimplementedError();
   }
   

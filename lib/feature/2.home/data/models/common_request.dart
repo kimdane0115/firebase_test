@@ -29,7 +29,8 @@ class CommonRequest<T> with _$CommonRequest<T> {
     // required int iconCodePoint,
     T? fields,
     // required String name,
-  }) = _CommonRequest<T>;
+  // }) = _CommonRequest<T>;
+  }) = _CommonRequest;
 
   //It only works with block bodies and not with expression bodies
   //I don't know why

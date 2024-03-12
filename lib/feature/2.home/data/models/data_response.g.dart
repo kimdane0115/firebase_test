@@ -11,7 +11,7 @@ DataResponse<T> _$DataResponseFromJson<T>(
   T Function(Object? json) fromJsonT,
 ) =>
     DataResponse<T>(
-      documents: _$nullableGenericFromJson(json['documents'], fromJsonT),
+      documents: (json['documents'] as List<dynamic>?)?.map(fromJsonT).toList(),
     );
 
 Map<String, dynamic> _$DataResponseToJson<T>(
@@ -19,17 +19,5 @@ Map<String, dynamic> _$DataResponseToJson<T>(
   Object? Function(T value) toJsonT,
 ) =>
     <String, dynamic>{
-      'documents': _$nullableGenericToJson(instance.documents, toJsonT),
+      'documents': instance.documents?.map(toJsonT).toList(),
     };
-
-T? _$nullableGenericFromJson<T>(
-  Object? input,
-  T Function(Object? json) fromJson,
-) =>
-    input == null ? null : fromJson(input);
-
-Object? _$nullableGenericToJson<T>(
-  T? input,
-  Object? Function(T value) toJson,
-) =>
-    input == null ? null : toJson(input);

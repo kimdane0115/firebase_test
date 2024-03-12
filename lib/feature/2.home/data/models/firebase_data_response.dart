@@ -13,7 +13,7 @@ class FirebaseDataResponse<T> with _$FirebaseDataResponse<T> {
     final T? fields,
     required final String createTime,
     required final String updateTime,
-  }) = _FirebaseDataResponse<T>;
+  }) = _FirebaseDataResponse;
 
   factory FirebaseDataResponse.fromJson(
       Map<String, dynamic> json, T Function(Object? json) fromJsonT) {

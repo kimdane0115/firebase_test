@@ -16,7 +16,7 @@ final _privateConstructorUsedError = UnsupportedError(
 
 /// @nodoc
 mixin _$DataResponse<T> {
-  T? get documents => throw _privateConstructorUsedError;
+  List<T>? get documents => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
   $DataResponseCopyWith<T, DataResponse<T>> get copyWith =>
@@ -29,7 +29,7 @@ abstract class $DataResponseCopyWith<T, $Res> {
           DataResponse<T> value, $Res Function(DataResponse<T>) then) =
       _$DataResponseCopyWithImpl<T, $Res, DataResponse<T>>;
   @useResult
-  $Res call({T? documents});
+  $Res call({List<T>? documents});
 }
 
 /// @nodoc
@@ -51,7 +51,7 @@ class _$DataResponseCopyWithImpl<T, $Res, $Val extends DataResponse<T>>
       documents: freezed == documents
           ? _value.documents
           : documents // ignore: cast_nullable_to_non_nullable
-              as T?,
+              as List<T>?,
     ) as $Val);
   }
 }
@@ -64,7 +64,7 @@ abstract class _$$DataResponseImplCopyWith<T, $Res>
       __$$DataResponseImplCopyWithImpl<T, $Res>;
   @override
   @useResult
-  $Res call({T? documents});
+  $Res call({List<T>? documents});
 }
 
 /// @nodoc
@@ -82,9 +82,9 @@ class __$$DataResponseImplCopyWithImpl<T, $Res>
   }) {
     return _then(_$DataResponseImpl<T>(
       documents: freezed == documents
-          ? _value.documents
+          ? _value._documents
           : documents // ignore: cast_nullable_to_non_nullable
-              as T?,
+              as List<T>?,
     ));
   }
 }
@@ -92,10 +92,19 @@ class __$$DataResponseImplCopyWithImpl<T, $Res>
 /// @nodoc
 
 class _$DataResponseImpl<T> extends _DataResponse<T> {
-  const _$DataResponseImpl({this.documents}) : super._();
+  const _$DataResponseImpl({final List<T>? documents})
+      : _documents = documents,
+        super._();
 
+  final List<T>? _documents;
   @override
-  final T? documents;
+  List<T>? get documents {
+    final value = _documents;
+    if (value == null) return null;
+    if (_documents is EqualUnmodifiableListView) return _documents;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(value);
+  }
 
   @override
   String toString() {
@@ -107,12 +116,13 @@ class _$DataResponseImpl<T> extends _DataResponse<T> {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$DataResponseImpl<T> &&
-            const DeepCollectionEquality().equals(other.documents, documents));
+            const DeepCollectionEquality()
+                .equals(other._documents, _documents));
   }
 
   @override
   int get hashCode =>
-      Object.hash(runtimeType, const DeepCollectionEquality().hash(documents));
+      Object.hash(runtimeType, const DeepCollectionEquality().hash(_documents));
 
   @JsonKey(ignore: true)
   @override
@@ -123,11 +133,12 @@ class _$DataResponseImpl<T> extends _DataResponse<T> {
 }
 
 abstract class _DataResponse<T> extends DataResponse<T> {
-  const factory _DataResponse({final T? documents}) = _$DataResponseImpl<T>;
+  const factory _DataResponse({final List<T>? documents}) =
+      _$DataResponseImpl<T>;
   const _DataResponse._() : super._();
 
   @override
-  T? get documents;
+  List<T>? get documents;
   @override
   @JsonKey(ignore: true)
   _$$DataResponseImplCopyWith<T, _$DataResponseImpl<T>> get copyWith =>

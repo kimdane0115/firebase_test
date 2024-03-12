@@ -9,10 +9,10 @@ class DataResponse<T> with _$DataResponse<T> {
   const DataResponse._();
 
   const factory DataResponse({
-    final T? documents,
+    final List<T>? documents,
     // final String? statusMessage,
     // final int? statusCode,
-  }) = _DataResponse<T>;
+  }) = _DataResponse;
 
   factory DataResponse.fromJson(
       Map<String, dynamic> json, T Function(Object? json) fromJsonT) {

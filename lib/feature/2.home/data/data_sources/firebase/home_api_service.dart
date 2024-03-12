@@ -25,7 +25,7 @@ abstract class HomeApiService {
   Future<void> getTeam(@Path("teamId") String teamId);
 
   @GET("city1/{teamId}/member")
-  Future<DataResponse<List<FirebaseDataResponse<MemberModel>>>> getMember(@Path("teamId") String teamId);
+  Future<DataResponse<FirebaseDataResponse<MemberModel>>> getMember(@Path("teamId") String teamId);
 
   @PATCH('city1/{teamId}/member/{memberId}')
   Future<void> patchMemberId(@Path("teamId") String teamId,

@@ -70,43 +70,35 @@ class _HomeApiService implements HomeApiService {
   }
 
   @override
-  Future<DataResponse<List<FirebaseDataResponse<MemberModel>>>> getMember(
+  Future<DataResponse<FirebaseDataResponse<MemberModel>>> getMember(
       String teamId) async {
     final _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
     final _headers = <String, dynamic>{};
     const Map<String, dynamic>? _data = null;
     final _result = await _dio.fetch<Map<String, dynamic>>(
-        _setStreamType<DataResponse<List<FirebaseDataResponse<MemberModel>>>>(
-            Options(
+        _setStreamType<DataResponse<FirebaseDataResponse<MemberModel>>>(Options(
       method: 'GET',
       headers: _headers,
       extra: _extra,
     )
-                .compose(
-                  _dio.options,
-                  'city1/${teamId}/member',
-                  queryParameters: queryParameters,
-                  data: _data,
-                )
-                .copyWith(
-                    baseUrl: _combineBaseUrls(
-                  _dio.options.baseUrl,
-                  baseUrl,
-                ))));
-    final value =
-        DataResponse<List<FirebaseDataResponse<MemberModel>>>.fromJson(
+            .compose(
+              _dio.options,
+              'city1/${teamId}/member',
+              queryParameters: queryParameters,
+              data: _data,
+            )
+            .copyWith(
+                baseUrl: _combineBaseUrls(
+              _dio.options.baseUrl,
+              baseUrl,
+            ))));
+    final value = DataResponse<FirebaseDataResponse<MemberModel>>.fromJson(
       _result.data!,
-      (json) => json is List<dynamic>
-          ? json
-              .map<FirebaseDataResponse<MemberModel>>(
-                  (i) => FirebaseDataResponse<MemberModel>.fromJson(
-                        i as Map<String, dynamic>,
-                        (json) =>
-                            MemberModel.fromJson(json as Map<String, dynamic>),
-                      ))
-              .toList()
-          : List.empty(),
+      (json) => FirebaseDataResponse<MemberModel>.fromJson(
+        json as Map<String, dynamic>,
+        (json) => MemberModel.fromJson(json as Map<String, dynamic>),
+      ),
     );
     return value;
   }

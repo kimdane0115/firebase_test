@@ -2,10 +2,12 @@ import 'package:firebase_test/feature/2.home/data/models/data_request.dart';
 import 'package:firebase_test/feature/2.home/data/models/member_model.dart';
 import 'package:firebase_test/feature/2.home/data/models/record_model.dart';
 import 'package:firebase_test/feature/2.home/presentation/provider/home_provider.dart';
+import 'package:firebase_test/feature/2.home/presentation/provider/member_state_notifier.dart';
 
 import '../../../../core/constants/index.dart';
 import '../../../../flavors.dart';
 import '../../data/models/common_request.dart';
+import '../../domain/entities/member.dart';
 
 
 const String bodyStr = '''{
@@ -52,9 +54,9 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
     );
 
     MemberModel data = MemberModel(
-      memberName: {"stringValue": "zidane20"},
-      memberNumber: {"integerValue": '20'},
-      memberId: {"stringValue": "20"},
+      memberName: {"stringValue": "zidane21"},
+      memberNumber: {"integerValue": '21'},
+      memberId: {"stringValue": "21"},
       phone: {"stringValue": "010-1234-4321"},
     );
 
@@ -70,7 +72,15 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
     //   // updateTime: '2024-01-25T07:15:58.443669Z',
     // );
     // await ref.read(homeRepositoryProvider).getTeam('best');
-    await ref.read(homeRepositoryProvider).getMember('fccall');
+    // await ref.read(homeRepositoryProvider).getMember('fccall');
+    
+    // 11111
+    // ref.read(getMembersProvider)('fccall');
+    // ref.read(addMemberProvider)("borussia", "zidane20", commonModel);
+
+    // 22222
+    ref.read(memberStateNotifierProvider.notifier).getMember('fccall');
+    // ref.read(memberStateNotifierProvider.notifier).addMember("fccall", "zidane21", commonModel);
 
     // print('>>>> ${commonModel.toString()}');
     // print('>>>> ${model.toString()}');
@@ -85,8 +95,25 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
     // await ref.read(homeRepositoryProvider).patchMemberRecordYear("borussia", "zidane19", "2024", recordModel);
   }
 
+  void addMember(WidgetRef ref) {
+    MemberModel data = MemberModel(
+      memberName: {"stringValue": "zidane24"},
+      memberNumber: {"integerValue": '24'},
+      memberId: {"stringValue": "24"},
+      phone: {"stringValue": "010-1234-4321"},
+    );
+    CommonRequest<MemberModel> commonModel = CommonRequest(fields: data);
+    ref.read(memberStateNotifierProvider.notifier).addMember("fccall", "zidane24", commonModel);
+    ref.invalidate(memberStateNotifierProvider);
+  }
+
   @override
   Widget build(BuildContext context) {
+    final memberList = ref.watch(memberStateNotifierProvider);
+    for(Member item in memberList) {
+      print('>>> last res : ${item.memberId}, ${item.memberName}, ${item.memberNumber}');
+    }
+
     return SafeArea(
       child: Consumer(
         builder: (_, ref, __) {
@@ -96,7 +123,7 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
                 '',
               ),
             ),
-            body: home(),
+            body: home(ref),
             floatingActionButton: FloatingActionButton(
               onPressed: () async {
                 // FirebaseStorage _storage = FirebaseStorage.instance;
@@ -115,7 +142,17 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
     );
   }
 
-  Widget home() {
-    return const Text('home screen');
+  Widget home(WidgetRef ref) {
+    return Column(
+      children: [
+        const Text('123123'),
+        TextButton(
+          onPressed:() {
+            addMember(ref);
+          },
+          child: const Text('addMember'),
+        ),
+      ],
+    );
   }
 }
