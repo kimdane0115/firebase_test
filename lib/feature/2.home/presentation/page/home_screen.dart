@@ -3,6 +3,7 @@ import 'package:firebase_test/feature/2.home/data/models/member_model.dart';
 import 'package:firebase_test/feature/2.home/data/models/record_model.dart';
 import 'package:firebase_test/feature/2.home/presentation/provider/home_provider.dart';
 import 'package:firebase_test/feature/2.home/presentation/provider/member_state_notifier.dart';
+import 'package:firebase_test/feature/2.home/presentation/widget/member_card.dart';
 
 import '../../../../core/constants/index.dart';
 import '../../../../flavors.dart';
@@ -38,6 +39,13 @@ class HomeScreen extends ConsumerStatefulWidget {
 }
 
 class _HomeScreenState extends ConsumerState<HomeScreen> {
+
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    ref.read(memberStateNotifierProvider.notifier).getMember('fccall');
+  }
 
   void _incrementCounter(WidgetRef ref) async {
     // Map<String, dynamic> fields = {};
@@ -109,11 +117,6 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
 
   @override
   Widget build(BuildContext context) {
-    final memberList = ref.watch(memberStateNotifierProvider);
-    for(Member item in memberList) {
-      print('>>> last res : ${item.memberId}, ${item.memberName}, ${item.memberNumber}');
-    }
-
     return SafeArea(
       child: Consumer(
         builder: (_, ref, __) {
@@ -143,16 +146,42 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
   }
 
   Widget home(WidgetRef ref) {
-    return Column(
-      children: [
-        const Text('123123'),
-        TextButton(
-          onPressed:() {
-            addMember(ref);
+    final memberList = ref.watch(memberStateNotifierProvider);
+    // for(Member item in memberList) {
+    //   print('>>> last res : ${item.memberId}, ${item.memberName}, ${item.memberNumber}');
+    // }
+    return Padding(
+      padding: const EdgeInsets.symmetric(horizontal: 20),
+      child: SingleChildScrollView(
+        physics: const ScrollPhysics(),
+        child: ListView.builder(
+          physics: NeverScrollableScrollPhysics(),
+          shrinkWrap: true,
+          itemCount: memberList.length,
+          itemBuilder: (context, index) {
+            final member = memberList[index];
+            return Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                MemberCard(model: member),
+                const SizedBox(height: 10,)
+              ],
+            );
           },
-          child: const Text('addMember'),
         ),
-      ],
+      ),
     );
+
+    // return Column(
+    //   children: [
+    //     const Text('123123'),
+    //     TextButton(
+    //       onPressed:() {
+    //         addMember(ref);
+    //       },
+    //       child: const Text('addMember'),
+    //     ),
+    //   ],
+    // );
   }
 }

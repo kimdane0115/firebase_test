@@ -7,19 +7,7 @@ import '../../domain/entities/member.dart';
 import '../../domain/usecases/add_member.dart';
 import '../../domain/usecases/get_members.dart';
 import 'home_provider.dart';
-part 'member_state_notifier.g.dart';
-
-@Riverpod(keepAlive: true)
-GetMembers getMembers(GetMembersRef ref) {
-  final repository = ref.read(homeRepositoryProvider);
-  return GetMembers(repository);
-}
-
-@Riverpod(keepAlive: true)
-AddMember addMember(AddMemberRef ref) {
-  final  repository = ref.read(homeRepositoryProvider);
-  return AddMember(repository);
-}
+// part 'member_state_notifier.g.dart';
 
 final memberStateNotifierProvider = StateNotifierProvider<MemberListStateNotifier, List<Member>>((ref) {
   final getMembers = ref.read(getMembersProvider);
