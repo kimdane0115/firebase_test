@@ -12,7 +12,20 @@
           "package_name": "com.kimdane.firebase_test"
         }
       },
-      "oauth_client": [],
+      "oauth_client": [
+        {
+          "client_id": "116453369555-omooi3ij8t4913shes2fgiru2bcbqj3a.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.kimdane.firebase_test",
+            "certificate_hash": "27196e386b875e76adf700e7ea84e4c6eee33dfa"
+          }
+        },
+        {
+          "client_id": "116453369555-07378e17tifb506d12iderhbrq7u5a6h.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
       "api_key": [
         {
           "current_key": "AIzaSyDNgRKeeXbf4O_M2M-Ss3YoBhC8jS7RRsI"
@@ -20,7 +33,12 @@
       ],
       "services": {
         "appinvite_service": {
-          "other_platform_oauth_client": []
+          "other_platform_oauth_client": [
+            {
+              "client_id": "116453369555-07378e17tifb506d12iderhbrq7u5a6h.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
         }
       }
     }

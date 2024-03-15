@@ -1,9 +1,13 @@
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_test/feature/2.home/data/models/data_request.dart';
 import 'package:firebase_test/feature/2.home/data/models/member_model.dart';
 import 'package:firebase_test/feature/2.home/data/models/record_model.dart';
 import 'package:firebase_test/feature/2.home/presentation/provider/home_provider.dart';
 import 'package:firebase_test/feature/2.home/presentation/provider/member_state_notifier.dart';
 import 'package:firebase_test/feature/2.home/presentation/widget/member_card.dart';
+import 'package:google_sign_in/google_sign_in.dart';
+import 'package:sign_in_with_apple/sign_in_with_apple.dart';
 
 import '../../../../core/constants/index.dart';
 import '../../../../flavors.dart';
@@ -45,6 +49,14 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
     // TODO: implement initState
     super.initState();
     ref.read(memberStateNotifierProvider.notifier).getMember('fccall');
+
+    FirebaseAuth.instance.authStateChanges().listen((user) {
+      if (user == null) {
+        print('>>> user is null');
+      } else {
+        print('>>> ${user.email}');
+      }
+    });
   }
 
   void _incrementCounter(WidgetRef ref) async {
@@ -115,6 +127,57 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
     ref.invalidate(memberStateNotifierProvider);
   }
 
+  Future<void> gogole_login() async {
+     final GoogleSignInAccount? googleUser = await GoogleSignIn().signIn();
+
+      // Obtain the auth details from the request
+      final GoogleSignInAuthentication? googleAuth = await googleUser?.authentication;
+
+      print('>>>> ${googleUser?.displayName}');
+      print('>>>> ${googleUser?.email}');
+      print('>>>> ${googleAuth?.accessToken}');
+      print('>>>> ${googleAuth?.idToken}');
+
+       OAuthCredential _googleCredential = GoogleAuthProvider.credential(
+        idToken: googleAuth?.idToken,
+        accessToken: googleAuth?.accessToken,
+      );
+
+      UserCredential _credential =
+          await FirebaseAuth.instance.signInWithCredential(_googleCredential);
+      if (_credential.user != null) {
+        print(">>>> ${_credential.user}");
+      }
+
+      // Create a new credential
+      // final credential = GoogleAuthProvider.credential(
+      //   accessToken: googleAuth?.accessToken,
+      //   idToken: googleAuth?.idToken,
+      // );
+  }
+
+  Future<void> google_logout() async {
+    final GoogleSignInAccount? googleUser = await GoogleSignIn().signOut();
+    FirebaseAuth.instance.signOut();
+  }
+
+  Future<void> apple_login() async {
+    final AuthorizationCredentialAppleID appleCredential =
+        await SignInWithApple.getAppleIDCredential(
+      scopes: [
+        AppleIDAuthorizationScopes.email,
+        AppleIDAuthorizationScopes.fullName,
+      ],
+    );
+
+    final OAuthCredential credential = OAuthProvider('apple.com').credential(
+      idToken: appleCredential.identityToken,
+      accessToken: appleCredential.authorizationCode,
+    );
+      
+    await FirebaseAuth.instance.signInWithCredential(credential);
+  }
+
   @override
   Widget build(BuildContext context) {
     return SafeArea(
@@ -154,20 +217,36 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
       padding: const EdgeInsets.symmetric(horizontal: 20),
       child: SingleChildScrollView(
         physics: const ScrollPhysics(),
-        child: ListView.builder(
-          physics: NeverScrollableScrollPhysics(),
-          shrinkWrap: true,
-          itemCount: memberList.length,
-          itemBuilder: (context, index) {
-            final member = memberList[index];
-            return Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                MemberCard(model: member),
-                const SizedBox(height: 10,)
-              ],
-            );
-          },
+        child: Column(
+          children: [
+            ListView.builder(
+              physics: NeverScrollableScrollPhysics(),
+              shrinkWrap: true,
+              itemCount: memberList.length,
+              itemBuilder: (context, index) {
+                final member = memberList[index];
+                return Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    MemberCard(model: member),
+                    const SizedBox(height: 10,),
+                  ],
+                );
+              },
+            ),
+            ElevatedButton(
+              onPressed: () {
+                gogole_login();
+              },
+              child: const Text('Login Button'),
+            ),
+            ElevatedButton(
+              onPressed: () {
+                google_logout();
+              },
+              child: const Text('Login Out'),
+            ),
+          ],
         ),
       ),
     );

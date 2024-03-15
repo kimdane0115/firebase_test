@@ -45,6 +45,10 @@ dependencies:
   retrofit: ^4.0.3
   dio: ^5.4.0
   riverpod_annotation: ^2.3.3
+  json_annotation: ^4.8.1
+  google_sign_in: ^6.2.1
+  firebase_auth: ^4.17.9
+  sign_in_with_apple: ^5.0.0
 
 dev_dependencies:
   flutter_test:
@@ -61,8 +65,8 @@ dev_dependencies:
   json_serializable: ^6.7.1
   go_router_builder: ^2.4.1
   riverpod_lint: ^2.3.7
-  retrofit_generator: ^8.0.6
   riverpod_generator: ^2.3.9
+  retrofit_generator: ^8.1.0
 
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec
